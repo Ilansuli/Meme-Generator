@@ -3,7 +3,7 @@
 let gElMemeCanvas
 let gCtx
 
-function init() {
+function mainInit() {
     gElMemeCanvas = document.querySelector('#edited-meme-canvas')
     gCtx = gElMemeCanvas.getContext('2d')
     renderMeme(getMeme())
@@ -12,15 +12,10 @@ function init() {
 
 function renderMeme(meme) {
     const { selectedImgId, lines, selectedLineIdx } = meme
-    const { txt, size, align, color } = lines[selectedLineIdx]
-
-
-
     const newImg = new Image()
     const imgs = getImgsForDisplay()
-    const img = imgs.find((img) => {
-        return img.id === selectedImgId
-    })
+    console.log(selectedImgId)
+    let img = imgs.find(img => img.id === selectedImgId)
     newImg.src = img.url
     newImg.onload = () => {
         gCtx.drawImage(newImg, 0, 0, gElMemeCanvas.width, gElMemeCanvas.height)
@@ -38,9 +33,10 @@ function renderLines(lines) {
         if (!idx) y = 50
         else if (idx === 1) y = 350
         else y = gElMemeCanvas.height / 2
-        renderLine(x,y,size,color,txt,align)
+        renderLine(x, y, size, color, txt, align)
         idx++
-    });
+
+    })
 
 }
 function renderLine(x, y, size, color, txt, align) {
@@ -52,15 +48,34 @@ function renderLine(x, y, size, color, txt, align) {
     gCtx.textAlign = align
     gCtx.strokeText(txt, x, y)
     gCtx.fillText(txt, x, y)
+
+}
+function renderLineBorder(x,y){
+
 }
 
 function onSetLineTxt(ev) {
     ev.preventDefault()
     const elInput = document.querySelector('input[name="new-line-txt"')
-    setLineTxt(elInput.value)
+    setTxtLine(elInput.value)
     elInput.value = ''
 }
+function onChangeColor(color) {
+    changeColor(color)
+}
+function onDecreaseFont() {
+    decreaseFont()
+}
+function onIncreaseFont() {
+    increaseFont()
+}
 
+function onSetEditor() {
+    setEditor()
+}
+function onSetGallery() {
+    setGallery()
+}
 // function resizeCanvas() {
 //     const elContainer = document.querySelector('.canvas-container')
 //     // Note: changing the canvas dimension this way clears the canvas

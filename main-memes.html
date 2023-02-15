@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="mainInit()">
+    <header>
+        <div></div>
+        <ul>
+            <li onclick="onSetEditor()">Main</li>
+            <li onclick="onSetGallery()">Gallery</li>
+            <li>About</li>
+        </ul>
+    </header>
+
+    <section class="meme-editor-container" style="display: none;">
+
+        <section class="control-box"></section>
+
+        <form class="input-form" onsubmit="onSetLineTxt(event)">
+
+            <input name="new-line-txt" type="text" placeholder="Text">
+
+        </form>
+        <input name="clr-txt" type="color" oninput="onChangeColor(this.value)" />
+
+        <button class="font-val-btn" id="decrease" onclick="onDecreaseFont()" value="Decrease Value">-</button>
+        <button class="font-val-btn" id="increase" onclick="onIncreaseFont()" value="Increase Value">+</button>
+        <button class="switch-lines-btn">toggle</button>
+        <div class="edited-meme-container">
+            <canvas id="edited-meme-canvas" width="400" height="400" style="outline: 1px solid red"></canvas>
+        </div>
+
+    </section>
+
+
+    <section class="gallery-container">
+        <h1>gallery</h1>
+    </section>
+
+
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/main-controller.js"></script>
+    <script src="js/main-service.js"></script>
+</body>
+
+</html>
