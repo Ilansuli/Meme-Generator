@@ -1,0 +1,20 @@
+
+
+.meme-editor-container{
+    /* flex-direction: column; */
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    padding: 1.5em;
+    margin-inline: 2em;
+    border-radius: 15px;
+    background-color: var(--clr1);
+}
+
+
+#edited-meme-canvas{
+    width: 100%;
+    box-shadow: 3px 1px 15px white;
+    border-radius: 20px;
+}
+

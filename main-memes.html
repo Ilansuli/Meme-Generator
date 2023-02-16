@@ -6,45 +6,102 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
-    <link rel="stylesheet" href="css/main.css">
+    <script src="https://kit.fontawesome.com/bd56cf1b04.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body onload="mainInit()">
-    <header>
-        <div></div>
-        <ul>
-            <li onclick="onSetEditor()">Main</li>
-            <li onclick="onSetGallery()">Gallery</li>
-            <li>About</li>
-        </ul>
-    </header>
-
-    <section class="meme-editor-container" style="display: none;">
-
-        <section class="control-box"></section>
-
-        <form class="input-form" onsubmit="onSetLineTxt(event)">
-
-            <input name="new-line-txt" type="text" placeholder="Text">
-
-        </form>
-        <input name="clr-txt" type="color" oninput="onChangeColor(this.value)" />
-
-        <button class="font-val-btn" id="decrease" onclick="onDecreaseFont()" value="Decrease Value">-</button>
-        <button class="font-val-btn" id="increase" onclick="onIncreaseFont()" value="Increase Value">+</button>
-        <button class="switch-lines-btn">toggle</button>
-        <div class="edited-meme-container">
-            <canvas id="edited-meme-canvas" width="400" height="400" style="outline: 1px solid red"></canvas>
+    <div class="main-screen" onclick="onToggleMenu()"></div>
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="header-logo" onclick="onSetEditor()">ＭＥＭＥＮＡＴＯＲ</div>
         </div>
+        <div class="ham-menu" onclick="onToggleMenu()">
+        </div>
+        <nav>
+            <ul class="main-nav">
+                <li onclick="onSetGallery()">Gallery</li>
+                <li>About</li>
+            </ul>
+        </nav>
+    </header>
+    <!-- MEME EDITOR -->
+    <section class="meme-editor-container" style="display: none;">
+        <!-- CANVAS -->
+        <div class="edited-meme-container">
+            <canvas id="edited-meme-canvas" width="550" height="550"></canvas>
+        </div>
+        <!-- CONTROL BOX -->
+        <section class="control-box">
+            <!-- <form oninput="onSetLineTxt(event)" class="input-form" > -->
+            <input oninput="onSetLineTxt(event)" class="new-line-txt" name="new-line-txt" type="text"
+                placeholder="Funny Text">
+            <!-- </form> -->
+            <div class="features">
 
+                <div class="lines-adjustments">
+                    <button title="Add text line" type="button" class="add-line" onclick="onAddNewTextLine()"><i
+                            class="fa-solid fa-plus"></i></button>
+                    <button title="Toggle lines" type="button" class="switch-lines-btn" onclick="onToggleLines()"> <i
+                            class="fa-solid fa-arrows-up-down"></i></button>
+                    <button onclick="onDeleteLine()" title="Delete line" type="button" class="delete-line"><i
+                            class="fa-solid fa-trash-can"></i></button>
+                </div>
+                <div class="lines-functions">
+                    <button title="-Font size" type="button" class="font-val-btn" id="decrease"
+                        onclick="onDecreaseFont()" value="Decrease Value"><i class="fa-solid fa-a"></i>-</button>
+                    <button title="+Font size" type="button" class="font-val-btn" id="increase"
+                        onclick="onIncreaseFont()" value="Increase Value"><i class="fa-solid fa-a"></i>+</button>
+                    <select onchange="onChangeFont(this)" title="font" class="font">
+                        <option title="impact" value="impact">IMPACT</option>
+                        <option title="impact" value="arial">Arial</option>
+                        <option title="impact" value="georgia">Georgia</option>
+                        <option title="impact" value="somic sans ms">Comic Sans MS</option>
+                        <option title="impact" value="courier">Courier</option>
+                        <option title="impact" value="garamond">Garamond</option>
+                    </select>
+                    <div title="color-picker" class="color-picker-container">
+                        <input class="clr-txt" type="color" value="#ffb721" oninput="onChangeColor(this.value)" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="user-meme-usage">
+                <button onclick="onUploadImg()" title="Share" type="button"><i class="fa-solid fa-share"></i></button>
+                <button title="Download" type="button"><a onclick="downloadCanvas(this)"><i
+                            class="fa-solid fa-download"></i></a></button>
+            </div>
+        </section>
     </section>
 
-
+    <!-- GALLERY -->
     <section class="gallery-container">
-        <h1>gallery</h1>
     </section>
 
+    <!-- INTRO ON ME -->
 
+    <!-- <section class="intro-to-me">
+        <div class="intro-img-container">
+            <img src="imgs/ilan.png" alt="">
+            <div>
+                <h3>Ilan Suli</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <ul class="social-media">
+                    <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                    <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href=""><i class="fa-brands fa-linkedin-in"></i></a></li>
+                    <li><a href=""><i class="fa-brands fa-github"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </section> -->
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        All Rights Reserved 2023©
+    </footer>
     <script src="js/gallery-controller.js"></script>
     <script src="js/main-controller.js"></script>
     <script src="js/main-service.js"></script>

@@ -1,0 +1,100 @@
+.control-box {
+    display: flex;
+    flex-direction:column;
+    gap: 2.5em;
+    justify-content: space-between;
+    background-color: var(--clr4);
+    border-radius: 20px;
+    padding: 1em;
+}
+
+/* CONTROL BOX ROWS */
+
+.new-line-txt {
+    width: 100%;
+    height: 2em;
+    border-radius: 15px;
+    border: 0;
+    outline: none;
+    font-size: x-large;
+    padding-inline: 10px;
+}
+.features{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.lines-adjustments {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.lines-adjustments button {
+    font-size: x-large;
+    padding-block: 10px;
+    padding-inline: 20px;
+}
+
+.lines-functions {
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+
+}
+
+.lines-functions button {
+    font-size: x-large;
+    padding-block: 10px;
+    padding-inline: 10px;
+}
+.user-meme-usage{
+    display: flex;
+    justify-content: space-around;
+}
+.user-meme-usage button{
+    padding-block: 10px;
+    padding-inline: 10px;
+    font-size: xx-large ;
+    background-color: inherit;
+}
+button {
+    cursor: pointer;
+    background-color: #fff;
+    border: 0;
+    border-radius: 10px;
+
+}
+.font{
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 6em;
+    outline: none;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: x-large;
+    padding-inline: 10px;
+}
+
+.clr-txt {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    width: 4em;
+    height: 4em;
+    border: none;
+    cursor: pointer;
+}
+
+.clr-txt::-webkit-color-swatch {
+    border-radius: 50%;
+    border: 4px solid #000000;
+}
+
+.clr-txt::-moz-color-swatch {
+    border-radius: 50%;
+    border: 4px solid #000000;
+}

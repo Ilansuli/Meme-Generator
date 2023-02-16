@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+background-color: var(--clr2);
+}
+
+.gallery-container {
+    columns: 5;
+    gap: 20px;
+    padding: 1.5em;
+    margin-inline: 2em;
+    border-radius: 15px;
+    background-color: var(--clr1);
+}
+
+.gallery-container img {
+    width: 100%;
+    box-shadow: 3px 6px 4px 0px black;
+    border-radius: 10%;
+}
+
+.gallery-meme {
+    transition: 350ms;
+    border-radius: 10%;
+    margin-block-end: 10px;
+    min-width: 100px ;
+}
+
+.gallery-meme:hover {
+    cursor: pointer;
+
+    opacity: 0.5;
+}
