@@ -1,18 +1,18 @@
 /* SETUP */
-@import './setup/vars.css';
-@import './setup/typography.css';
-@import './setup/helpers.css';
+@import 'setup/vars.css';
+@import 'setup/typography.css';
+@import 'setup/helpers.css';
 
 /* BASICS */
-@import './base/base.css';
-@import './base/gallery-layout.css';
-@import './base/meme-editor-layout.css';
+@import 'base/base.css';
+@import 'base/gallery-layout.css';
+@import 'base/meme-editor-layout.css';
 
 /* COMPONENTS */
-@import './components/header.css';
-@import './components/footer.css';
-@import './components/control-box.css';
-@import './components/screen.css';
-@import './components/hamburger-menu.css';
+@import 'components/header.css';
+@import 'components/footer.css';
+@import 'components/control-box.css';
+@import 'components/screen.css';
+@import 'components/hamburger-menu.css';
 /* MEDIA QUERY */
-@import './media-query/mq.css';
+@import 'media-query/mq.css';
