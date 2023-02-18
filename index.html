@@ -78,30 +78,34 @@
 
     <!-- GALLERY -->
     <section class="gallery-container">
-    </section>
 
-    <!-- INTRO ON ME -->
+        <input oninput="onSetFilter(this)" list="imgs-filter-list" name="imgs-filter" placeholder="Search memes">
+        <datalist id="imgs-filter-list">
+            <option value="Funny">
+            <option value="Ma Atem Ha`yitem Osim">
+            <option value="Politics">
+            <option value="Baby">
+            <option value="Television">
+            <option value="Animal">
+            <option value="Cartoon">
+            <option value="Dog">
+            <option value="Cat">
+            <option value="Aliens">
+            <option value="Wrestling">
+        </datalist>
 
-    <!-- <section class="intro-to-me">
-        <div class="intro-img-container">
-            <img src="imgs/ilan.png" alt="">
-            <div>
-                <h3>Ilan Suli</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <ul class="social-media">
-                    <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
-                    <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
-                    <li><a href=""><i class="fa-brands fa-linkedin-in"></i></a></li>
-                    <li><a href=""><i class="fa-brands fa-github"></i></a></li>
-                </ul>
-            </div>
+        <div class="imgs-container">
 
         </div>
-    </section> -->
+        <button onclick="onSetRandomMeme()" type="button" class="flexible-btn">Im Flexible</button>
+    </section>
+    
     <!-- FOOTER -->
     <footer class="main-footer">
         All Rights Reserved 2023©
+
     </footer>
+    <script src="js/utils.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/main-controller.js"></script>
     <script src="js/main-service.js"></script>

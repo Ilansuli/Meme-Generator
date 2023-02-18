@@ -59,7 +59,7 @@
         padding-block: 30px;
     }
 
-    .gallery-container {
+    .imgs-container {
         columns: 2 130px;
         
     }
@@ -78,7 +78,7 @@
 /* GALLERY */
 
 @media(min-width: 760px){
-    .gallery-container {
+    .imgs-container {
         /* GALLERY */
         columns: 3 130px;
     }
@@ -92,7 +92,7 @@
 
 
 @media (min-width: 920px) {
-    .gallery-container {
+    .imgs-container {
         columns: 4 130px;
     }
 }
@@ -102,7 +102,7 @@
 /* GALLERY */
 
 @media (min-width: 1060px) {
-    .gallery-container {
+    .imgss-container {
         columns: 5 130px;
     }
 }

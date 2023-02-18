@@ -7,3 +7,28 @@ footer{
     letter-spacing: 1px;
     font-size: 20px;
 }
+.social-media{
+
+list-style-type: none;
+
+
+
+}
+.social-media li a{
+/* text-decoration: none; */
+
+}
+.fa-facebook-f{
+    color: #2374e1;
+}
+.fa-instagram{
+    color : #e1306c
+}
+
+.fa-linkedin-in{
+    color: #0a63bc
+}
+.fa-github{
+    background-color: white;
+    border-radius: 100%;
+}

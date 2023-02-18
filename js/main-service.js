@@ -1,7 +1,7 @@
 'use strict'
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+let gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
-var gMeme = {
+let gMeme = {
     selectedImgId: 4,
     selectedLineIdx: 0,
     lines: [
@@ -24,29 +24,54 @@ var gMeme = {
     ]
 }
 
-var gImgs = [
-    { id: 1, url: 'memes-imgs/1.jpg' },
-    { id: 2, url: 'memes-imgs/2.jpg' },
-    { id: 3, url: 'memes-imgs/3.jpg' },
-    { id: 4, url: 'memes-imgs/4.jpg' },
-    { id: 5, url: 'memes-imgs/5.jpg' },
-    { id: 6, url: 'memes-imgs/6.jpg' },
-    { id: 7, url: 'memes-imgs/7.jpg' },
-    { id: 8, url: 'memes-imgs/8.jpg' },
-    { id: 9, url: 'memes-imgs/9.jpg' },
-    { id: 10, url: 'memes-imgs/10.jpg' },
-    { id: 11, url: 'memes-imgs/11.jpg' },
-    { id: 12, url: 'memes-imgs/12.jpg' },
-    { id: 13, url: 'memes-imgs/13.jpg' },
-    { id: 14, url: 'memes-imgs/14.jpg' },
-    { id: 15, url: 'memes-imgs/15.jpg' },
-    { id: 16, url: 'memes-imgs/16.jpg' },
-    { id: 17, url: 'memes-imgs/17.jpg' },
-    { id: 18, url: 'memes-imgs/18.jpg' }
+let gImgs = [
+    { id: 1, url: 'memes-imgs/1.jpg', keyWords: ['politics', 'funny'] },
+    { id: 2, url: 'memes-imgs/2.jpg', keyWords: ['puppy', 'animal', 'dog','cute'] },
+    { id: 3, url: 'memes-imgs/3.jpg', keyWords: ['cute','puppy','baby','dog'] },
+    { id: 4, url: 'memes-imgs/4.jpg', keyWords: ['animal','cat'] },
+    { id: 5, url: 'memes-imgs/5.jpg', keyWords: ['baby','funny'] },
+    { id: 6, url: 'memes-imgs/6.jpg', keyWords: ['aliens','television'] },
+    { id: 7, url: 'memes-imgs/7.jpg', keyWords: ['baby','funny'] },
+    { id: 8, url: 'memes-imgs/8.jpg', keyWords: ['television'] },
+    { id: 9, url: 'memes-imgs/9.jpg', keyWords: ['funny','baby'] },
+    { id: 10, url: 'memes-imgs/10.jpg', keyWords: ['politics'] },
+    { id: 11, url: 'memes-imgs/11.jpg', keyWords: ['funny','wrestling'] },
+    { id: 12, url: 'memes-imgs/12.jpg', keyWords: ['ma atem ha`yitem osim'] },
+    { id: 13, url: 'memes-imgs/13.jpg', keyWords: ['television'] },
+    { id: 14, url: 'memes-imgs/14.jpg', keyWords: ['television'] },
+    { id: 15, url: 'memes-imgs/15.jpg', keyWords: ['television'] },
+    { id: 16, url: 'memes-imgs/16.jpg', keyWords: ['funny','television'] },
+    { id: 17, url: 'memes-imgs/17.jpg', keyWords: ['politics'] },
+    { id: 18, url: 'memes-imgs/18.jpg', keyWords: ['cartoon','television'] }
+]
+let gFilterBy = {searchWords: ''}
+
+let gTxtOptions = [
+    'They turned us into an old meme',
+    'My lower back is killing me',
+    'Le me Coding',
+    'Paid money to suffer daily',
+    'Everybody Likes it',
+    'Makes old meme',
+    'Types with One Finger',
+    'Feeling Flexible?',
+    'I see You are very flexible today',
+    'Im on a seafood diet',
+    'I see food and i eat it',
+    'I am a meme',
+    'When you find out',
+    'You have no money',
+    'That moment',
+    'Well There`s your problem',
 ]
 
 function getImgsForDisplay() {
-    return gImgs
+    const {searchWords} = gFilterBy
+    // console.log(searchWords)
+    if(!searchWords) return gImgs
+    const imgs = gImgs.filter(img => img.keyWords.includes(searchWords))
+    console.log(imgs)
+    return imgs
 }
 
 function setImg(imgId) {
@@ -82,7 +107,6 @@ function updateTxtLinePos(x, y, idx) {
 }
 function updateTxtLineWidth(idx, txtWidth) {
     gMeme.lines[idx].width = txtWidth
-    console.log(gMeme.lines[idx].width)
 }
 function changeColor(color) {
     const { selectedLineIdx } = gMeme
@@ -98,6 +122,30 @@ function decreaseFont() {
     const { selectedLineIdx } = gMeme
     gMeme.lines[selectedLineIdx].size -= 1
     renderMeme(gMeme)
+}
+function setRandomMeme() {
+    const randomImgId = getRandomImgURL()
+    const topRandomTxt = getRandomTxt()
+    const bottomRandomTxt = getRandomTxt()
+    if (topRandomTxt === bottomRandomTxt) setRandomMeme()
+    gMeme.selectedImgId = randomImgId
+    gMeme.lines[0].txt = topRandomTxt
+    gMeme.lines[1].txt = bottomRandomTxt
+    setEditor()
+    renderMeme(gMeme)
+}
+function setFilter(filterBy) {
+    gFilterBy.searchWords = filterBy
+    console.log(gFilterBy)
+}
+
+function getRandomImgURL() {
+    const randomIdx = getRandomIntInclusive(0, gImgs.length - 1)
+    return gImgs[randomIdx].id
+}
+function getRandomTxt() {
+    const randomIdx = getRandomIntInclusive(0, gTxtOptions.length - 1)
+    return gTxtOptions[randomIdx]
 }
 function toggleLines() {
 
@@ -141,7 +189,6 @@ function doUploadImg(imgDataUrl, onSuccess) {
 
         // If the response is ok, call the onSuccess callback function, 
         // that will create the link to facebook using the url we got
-        console.log('Got back live url:', url)
         onSuccess(url)
     }
     XHR.onerror = (req, ev) => {

@@ -7,10 +7,10 @@ function mainInit() {
     gElMemeCanvas = document.querySelector('#edited-meme-canvas')
     gCtx = gElMemeCanvas.getContext('2d')
     renderMeme(getMeme())
-    renderGallery()
+    renderGallery(getImgsForDisplay())
+    resizeCanvas()
 
 }
-resizeCanvas()
 
 function renderMeme(meme) {
     const { selectedImgId, lines, selectedLineIdx } = meme
@@ -108,14 +108,25 @@ function onUploadImg() {
     function onSuccess(uploadedImgUrl) {
         // Encode the instance of certain characters in the url
         const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
-        console.log(encodedUploadedImgUrl)
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
     }
     // Send the image to the server
     doUploadImg(imgDataUrl, onSuccess)
 }
+function onSetRandomMeme(){
+    setRandomMeme()
+}
+function onSetFilter(elInput){
+    let filterBy = elInput.value
 
+    setFilter(filterBy.toLowerCase())
+    renderGallery()
+}
 function downloadCanvas(elLink) {
+    console.log(elLink)
+    let meme = getMeme()
+    meme.selectedLineIdx = null
+    renderMeme(meme)
     // Protect the image soo attacker could not download imgs from diff domain
     const data = gElMemeCanvas.toDataURL() // For security reason you cannot do toDataUrl on tainted canvas
     // This protects users from having private data exposed by using images
