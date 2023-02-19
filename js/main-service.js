@@ -86,6 +86,9 @@ function setImg(imgId) {
 function getMeme() {
     return gMeme
 }
+function setMeme(meme){
+    return gMeme = meme
+}
 function addNewTextLine() {
     const elInput = document.querySelector('input[name="new-line-txt"')
     elInput.value = ''

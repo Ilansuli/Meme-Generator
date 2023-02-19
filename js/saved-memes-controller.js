@@ -19,6 +19,7 @@ function renderSavedMemes(savedMemes){
 function onSetSavedMeme(memeImg){
     const savedMemes = getSavedMemesForDisplay()
     let savedMeme = savedMemes.find(meme => meme.url === memeImg.src)
-    renderMeme(savedMeme.meme)
+    setMeme(savedMeme.meme)
+    renderMeme(getMeme())
     setEditor()
 }
