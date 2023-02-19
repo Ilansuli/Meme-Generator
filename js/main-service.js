@@ -1,6 +1,8 @@
 'use strict'
 let gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
+const MEMES_STORAGE_KEY = 'user-memes'
+
 let gMeme = {
     selectedImgId: 4,
     selectedLineIdx: 0,
@@ -23,28 +25,28 @@ let gMeme = {
         }
     ]
 }
-
+let gSavedMemes = (loadFromStorage(MEMES_STORAGE_KEY)) ? loadFromStorage(MEMES_STORAGE_KEY) : []
 let gImgs = [
     { id: 1, url: 'memes-imgs/1.jpg', keyWords: ['politics', 'funny'] },
-    { id: 2, url: 'memes-imgs/2.jpg', keyWords: ['puppy', 'animal', 'dog','cute'] },
-    { id: 3, url: 'memes-imgs/3.jpg', keyWords: ['cute','puppy','baby','dog'] },
-    { id: 4, url: 'memes-imgs/4.jpg', keyWords: ['animal','cat'] },
-    { id: 5, url: 'memes-imgs/5.jpg', keyWords: ['baby','funny'] },
-    { id: 6, url: 'memes-imgs/6.jpg', keyWords: ['aliens','television'] },
-    { id: 7, url: 'memes-imgs/7.jpg', keyWords: ['baby','funny'] },
+    { id: 2, url: 'memes-imgs/2.jpg', keyWords: ['puppy', 'animal', 'dog', 'cute'] },
+    { id: 3, url: 'memes-imgs/3.jpg', keyWords: ['cute', 'puppy', 'baby', 'dog'] },
+    { id: 4, url: 'memes-imgs/4.jpg', keyWords: ['animal', 'cat'] },
+    { id: 5, url: 'memes-imgs/5.jpg', keyWords: ['baby', 'funny'] },
+    { id: 6, url: 'memes-imgs/6.jpg', keyWords: ['aliens', 'television'] },
+    { id: 7, url: 'memes-imgs/7.jpg', keyWords: ['baby', 'funny'] },
     { id: 8, url: 'memes-imgs/8.jpg', keyWords: ['television'] },
-    { id: 9, url: 'memes-imgs/9.jpg', keyWords: ['funny','baby'] },
+    { id: 9, url: 'memes-imgs/9.jpg', keyWords: ['funny', 'baby'] },
     { id: 10, url: 'memes-imgs/10.jpg', keyWords: ['politics'] },
-    { id: 11, url: 'memes-imgs/11.jpg', keyWords: ['funny','wrestling'] },
+    { id: 11, url: 'memes-imgs/11.jpg', keyWords: ['funny', 'wrestling'] },
     { id: 12, url: 'memes-imgs/12.jpg', keyWords: ['ma atem ha`yitem osim'] },
     { id: 13, url: 'memes-imgs/13.jpg', keyWords: ['television'] },
     { id: 14, url: 'memes-imgs/14.jpg', keyWords: ['television'] },
     { id: 15, url: 'memes-imgs/15.jpg', keyWords: ['television'] },
-    { id: 16, url: 'memes-imgs/16.jpg', keyWords: ['funny','television'] },
+    { id: 16, url: 'memes-imgs/16.jpg', keyWords: ['funny', 'television'] },
     { id: 17, url: 'memes-imgs/17.jpg', keyWords: ['politics'] },
-    { id: 18, url: 'memes-imgs/18.jpg', keyWords: ['cartoon','television'] }
+    { id: 18, url: 'memes-imgs/18.jpg', keyWords: ['cartoon', 'television'] }
 ]
-let gFilterBy = {searchWords: ''}
+let gFilterBy = { searchWords: '' }
 
 let gTxtOptions = [
     'They turned us into an old meme',
@@ -66,14 +68,16 @@ let gTxtOptions = [
 ]
 
 function getImgsForDisplay() {
-    const {searchWords} = gFilterBy
+    const { searchWords } = gFilterBy
     // console.log(searchWords)
-    if(!searchWords) return gImgs
+    if (!searchWords) return gImgs
     const imgs = gImgs.filter(img => img.keyWords.includes(searchWords))
     console.log(imgs)
     return imgs
 }
-
+function getSavedMemesForDisplay() {
+    return gSavedMemes
+}
 function setImg(imgId) {
     gMeme.selectedImgId = imgId
     setEditor()
@@ -170,7 +174,17 @@ function changeFont(elFont) {
     renderMeme(gMeme)
     elFont.value = gMeme.lines[gMeme.selectedLineIdx].font
 }
-
+function saveMeme(canvas) {
+    const canvasData = canvas.toDataURL()
+    const meme = {
+        url: canvasData,
+        meme: gMeme
+    }
+    gSavedMemes.push(meme)
+    saveToStorage(MEMES_STORAGE_KEY, gSavedMemes)
+    renderSavedMemes(getSavedMemesForDisplay())
+    setSavedMemes()
+}
 function doUploadImg(imgDataUrl, onSuccess) {
     // Pack the image for delivery
     const formData = new FormData()
@@ -200,13 +214,28 @@ function doUploadImg(imgDataUrl, onSuccess) {
 function setEditor() {
     const elGalleryContainer = document.querySelector('.gallery-container')
     elGalleryContainer.style.display = 'none'
+    const elSavedMemesContainer = document.querySelector('.saved-memes-container')
+    elSavedMemesContainer.style.display = 'none'
     const elEditorContainer = document.querySelector('.meme-editor-container')
     elEditorContainer.style.display = 'flex'
 }
 function setGallery() {
     const elEditorContainer = document.querySelector('.meme-editor-container')
     elEditorContainer.style.display = 'none'
+    const elSavedMemesContainer = document.querySelector('.saved-memes-container')
+    elSavedMemesContainer.style.display = 'none'
     const elGalleryContainer = document.querySelector('.gallery-container')
     elGalleryContainer.style.display = 'block'
 }
-
+function setSavedMemes() {
+    const elEditorContainer = document.querySelector('.meme-editor-container')
+    elEditorContainer.style.display = 'none'
+    const elGalleryContainer = document.querySelector('.gallery-container')
+    elGalleryContainer.style.display = 'none'
+    const elSavedMemesContainer = document.querySelector('.saved-memes-container')
+    elSavedMemesContainer.style.display = 'block'
+}
+/*
+to save canvas i need:
+to save to local storage
+*/

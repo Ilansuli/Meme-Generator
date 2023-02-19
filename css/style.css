@@ -6,6 +6,7 @@
 /* BASICS */
 @import 'base/base.css';
 @import 'base/gallery-layout.css';
+@import 'base/saved-memes-layout.css';
 @import 'base/meme-editor-layout.css';
 
 /* COMPONENTS */

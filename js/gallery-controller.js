@@ -12,3 +12,7 @@ function renderGallery(){
 function onImgSelect(elImg){
     setImg(+elImg.id)
 }
+
+function onSetGallery() {
+    setGallery()
+}

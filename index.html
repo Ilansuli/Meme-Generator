@@ -23,6 +23,7 @@
             <ul class="main-nav">
                 <li onclick="onSetGallery()">Gallery</li>
                 <li>About</li>
+                <li onclick="onSetSavedMemes()">Memes</li>
             </ul>
         </nav>
     </header>
@@ -37,7 +38,6 @@
             <!-- <form oninput="onSetLineTxt(event)" class="input-form" > -->
             <input oninput="onSetLineTxt(event)" class="new-line-txt" name="new-line-txt" type="text"
                 placeholder="Funny Text">
-            <!-- </form> -->
             <div class="features">
 
                 <div class="lines-adjustments">
@@ -70,10 +70,17 @@
 
             <div class="user-meme-usage">
                 <button onclick="onUploadImg()" title="Share" type="button"><i class="fa-solid fa-share"></i></button>
+                <button onclick="onSaveMeme()" title="Save" type="button">SAVE</button>
                 <button title="Download" type="button"><a onclick="downloadCanvas(this)"><i
                             class="fa-solid fa-download"></i></a></button>
             </div>
         </section>
+    </section>
+    
+    <!-- SAVED MEME -->
+    <section class="saved-memes-container">
+        <div class="saved-memes">
+        </div>
     </section>
 
     <!-- GALLERY -->
@@ -99,14 +106,16 @@
         </div>
         <button onclick="onSetRandomMeme()" type="button" class="flexible-btn">Im Flexible</button>
     </section>
-    
+
     <!-- FOOTER -->
     <footer class="main-footer">
         All Rights Reserved 2023©
 
     </footer>
+    <script src="js/storage-service.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/gallery-controller.js"></script>
+    <script src="js/saved-memes-controller.js"></script>
     <script src="js/main-controller.js"></script>
     <script src="js/main-service.js"></script>
 </body>

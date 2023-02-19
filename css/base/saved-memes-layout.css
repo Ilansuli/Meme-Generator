@@ -1,0 +1,36 @@
+
+
+.saved-memes-container{
+    display: none;
+}
+    
+    .saved-memes-container {
+        background-color: var(--clr1);
+        padding-inline: 1.5em;
+        padding-block: 1.5em;
+        margin-inline: 2em;
+        border-radius: 15px;
+    }
+    
+    .saved-memes img {
+        width: 100%;
+        box-shadow: 3px 6px 4px 0px black;
+        border-radius: 10%;
+    }
+    .saved-memes{
+        columns: 3;
+        gap: 20px;
+    }
+    .saved-meme-img {
+        transition: 350ms;
+        border-radius: 10%;
+        margin-block-end: 10px;
+        min-width: 100px ;
+    }
+    
+    .saved-meme-img:hover {
+        cursor: pointer;
+    
+        opacity: 0.5;
+    }
+    

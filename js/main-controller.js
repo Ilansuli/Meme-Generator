@@ -8,6 +8,7 @@ function mainInit() {
     gCtx = gElMemeCanvas.getContext('2d')
     renderMeme(getMeme())
     renderGallery(getImgsForDisplay())
+    renderSavedMemes(getSavedMemesForDisplay())
     resizeCanvas()
 
 }
@@ -136,12 +137,11 @@ function downloadCanvas(elLink) {
   }
 
 
+
 function onSetEditor() {
     setEditor()
 }
-function onSetGallery() {
-    setGallery()
-}
+
 function resizeCanvas() {
     // const elCanvasContainer = document.querySelector('.edited-meme-container')
     // // Note: changing the canvas dimension this way clears the canvas
